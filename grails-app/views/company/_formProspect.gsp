@@ -2,12 +2,12 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: companyInstance, field: 'companyName', 'error')} required">
-	<label for="companyName">
-		<g:message code="company.include.companyName.label" default="Company Name" />
+<div class="fieldcontain ${hasErrors(bean: companyInstance, field: 'name', 'error')} required">
+	<label for="name">
+		<g:message code="company.include.companyName.label" default="Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="companyName" maxlength="50" required="" value="${companyInstance?.companyName}"/>
+	<g:textField name="name" maxlength="50" required="" value="${companyInstance?.name}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: companyInstance, field: 'cnpj', 'error')} required">
@@ -35,12 +35,12 @@
 	<g:textField name="contactPhone" maxlength="20" pattern="${companyInstance.constraints.contactPhone.matches}" value="${companyInstance?.contactPhone}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: companyInstance, field: 'email', 'error')} required">
-	<label for="email">
+<div class="fieldcontain ${hasErrors(bean: companyInstance, field: 'contactEmail', 'error')} required">
+	<label for="contactEmail">
 		<g:message code="company.include.email.label" default="Email" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="email" name="email" maxlength="50" required="" value="${companyInstance?.email}"/>
+	<g:field type="email" name="contactEmail" maxlength="50" required="" value="${companyInstance?.contactEmail}"/>
 	&nbsp;
     <g:message code="company.pattern.email"/>
 </div>
