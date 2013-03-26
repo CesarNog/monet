@@ -1,5 +1,7 @@
 package com.cpqd.monet.company
 
+import com.cpqd.monet.contact.Contact
+
 /**
  * Simples objeto de domínio representando uma empresa.
  *
@@ -50,17 +52,6 @@ class Company {
 	// Bairro
 	String neighborhood
 
-	// Informações de contato
-
-	//Nome do contato
-	String contactName
-
-	// Telefone do contato - formatos: NNNN-NNNN ou NNNNNNNN
-	String contactPhone
-
-	// E-mail do contato
-	String contactEmail
-
 	// Razão Social
 	String socialReason
 
@@ -76,6 +67,8 @@ class Company {
 	// Se é de prospecção ou não
 	boolean prospect = true;
 
+	static hasMany = [contact:Contact]
+	
 	// Validação de campos
 	static constraints = {		
 		cnpj blank:false, unique:true, matches:"([0-9]{2})[.. ]?([0-9]{3})[.. ]?([0-9]{3})[/. ]?([0-9]{4})[-. ]?([0-9]{2})"
@@ -104,11 +97,6 @@ class Company {
 
 		//Bairro
 		neighborhood blank: false, nullable: true, maxSize:50
-
-		// Informações de contato
-		contactName size: 1..50, blank: false, nullable: true, maxSize:50
-		contactPhone matches: "([0-9]{4})[-. ]?([0-9]{4})", maxSize:50, blank: false, nullable: true
-		contactEmail blank: false, email: true, nullable: true
 
 		// Razão Social
 		socialReason blank: false, nullable: true, maxSize:50
