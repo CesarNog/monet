@@ -23,25 +23,20 @@
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 
-<link rel="stylesheet" href="${createLinkTo(dir:'css',file:'reset.css')}">
-<link rel="stylesheet" href="${createLinkTo(dir:'css',file:'960.css')}">
-<link rel="stylesheet" href="${createLinkTo(dir:'css',file:'text.css')}">	
-
-<r:require modules="jquery,application" />
-<r:require modules="nine-sixty-grid-system"/>
-
 <g:layoutHead />
+
+<g:javascript library="jquery"/>
+<r:require modules="nine-sixty-grid-system, jquery,application" />
+
 <r:layoutResources />
 </head>
 
 <body>
-	<div id="wrapper">
-		<div class="grid_8">
-			<div id="content">
-				<g:layoutbody>
-			</div>
-		</div>
+
+	<div class="container_12">			
+			<g:layoutBody />	
 	</div>
+
 	<r:layoutResources />
 </body>
 </html>

@@ -1,14 +1,11 @@
-
 <%@ page import="com.cpqd.monet.company.Company"%>
-<!DOCTYPE html>
-<html>
-<head>
+
+<div class="grid_10 prefix_1 suffix_1">
+
 <meta name="layout" content="main">
 <g:set var="entityName"
 	value="${message(code: 'company.label', default: 'Company')}" />
 <title><g:message code="company.create.list.label" /></title>
-</head>
-<body>
 	<a href="#list-company" class="skip" tabindex="-1"><g:message
 			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 	<div class="nav" role="navigation">
@@ -97,11 +94,6 @@
 						<td>
 							${fieldValue(bean: companyInstance, field: "uf")}
 						</td>
-
-
-
-
-
 					</tr>
 				</g:each>
 			</tbody>
@@ -109,6 +101,5 @@
 	</div>
 	<div class="pagination">
 		<g:paginate total="${companyInstanceTotal}" />
-	</div>
-</body>
-</html>
+	</div>								
+</div>

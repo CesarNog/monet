@@ -3,6 +3,9 @@ package com.cpqd.monet.company
 
 
 import org.junit.*
+
+import com.cpqd.monet.street.StreetType;
+
 import grails.test.mixin.*
 
 @TestFor(StreetTypeController)

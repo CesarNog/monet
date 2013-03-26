@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
 <meta name="layout" content="main" />
-<title>Welcome to Grails</title>
+<title>Grails - CPqD Monet</title>
 <style type="text/css" media="screen">
 #status {
 	background-color: #eee;
@@ -127,5 +124,3 @@ p {
 			</ul>
 		</div>
 	</div>
-</body>
-</html>
