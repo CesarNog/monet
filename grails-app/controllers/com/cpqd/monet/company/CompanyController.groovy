@@ -57,7 +57,7 @@ class CompanyController {
 		def company = companyService.createCompany(params);
 
 		if (company.hasErrors()) {
-			println "Criando empresa... inicial"
+			println "Criando empresa..."
 			return [company: company, types: Company.list()]
 		}
 

@@ -49,9 +49,6 @@ grails.project.dependency.resolution = {
 		
         runtime ":jquery:1.9.1"
         
-
-		compile ":nine-sixty-grid-system:1.0"
-
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
         //runtime ":cached-resources:1.0"

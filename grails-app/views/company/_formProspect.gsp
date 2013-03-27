@@ -1,7 +1,5 @@
 <%@ page import="com.cpqd.monet.company.Company"%>
 
-
-
 <div
 	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'name', 'error')} required">
 	<label for="name"> <g:message
@@ -18,7 +16,7 @@
 			default="Cnpj" /> <span class="required-indicator">*</span>
 	</label>
 	<g:textField name="cnpj"
-		pattern="${companyInstance.constraints.cnpj.matches}" required=""
+		pattern="${companyInstance?.constraints.cnpj.matches}" required=""
 		value="${companyInstance?.cnpj}" />
 	&nbsp;
 	<g:message code="company.pattern.cnpj" />
@@ -40,7 +38,7 @@
 			code="company.include.contactPhone.label" default="Contact Phone" />
 	</label>
 	<g:textField name="contactPhone" maxlength="20"
-		pattern="${companyInstance.constraints.contactPhone.matches}"
+		pattern="${companyInstance?.constraints.contactPhone.matches}"
 		value="${companyInstance?.contactPhone}" />
 </div>
 
