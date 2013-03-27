@@ -1,9 +1,9 @@
 package com.cpqd.monet.company
 
 import com.cpqd.monet.address.Address
+import com.cpqd.monet.address.StreetTitle;
+import com.cpqd.monet.address.StreetType;
 import com.cpqd.monet.contact.Contact
-import com.cpqd.monet.street.StreetTitle
-import com.cpqd.monet.street.StreetType
 
 /**
  * Simples objeto de domínio representando uma empresa.

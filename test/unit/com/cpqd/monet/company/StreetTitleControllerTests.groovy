@@ -4,7 +4,7 @@ package com.cpqd.monet.company
 
 import org.junit.*
 
-import com.cpqd.monet.street.StreetTitle;
+import com.cpqd.monet.address.StreetTitle;
 
 import grails.test.mixin.*
 

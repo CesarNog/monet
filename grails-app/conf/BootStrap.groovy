@@ -1,8 +1,8 @@
+import com.cpqd.monet.address.StreetTitle;
+import com.cpqd.monet.address.StreetType;
 import com.cpqd.monet.company.Company
 import com.cpqd.monet.company.CompanyType
 import com.cpqd.monet.company.ComplementType
-import com.cpqd.monet.street.StreetTitle;
-import com.cpqd.monet.street.StreetType;
 
 class BootStrap {
 	

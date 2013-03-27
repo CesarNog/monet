@@ -1,8 +1,6 @@
-package com.cpqd.monet.locality
+package com.cpqd.monet.address
 
 import com.cpqd.monet.company.ComplementType
-import com.cpqd.monet.street.StreetTitle;
-import com.cpqd.monet.street.StreetType;
 
 /**
  * Simples objeto de domínio representando uma empresa.

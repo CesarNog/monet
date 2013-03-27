@@ -1,8 +1,8 @@
 package com.cpqd.monet.license
 
+import com.cpqd.monet.address.StreetTitle;
+import com.cpqd.monet.address.StreetType;
 import com.cpqd.monet.company.ComplementType
-import com.cpqd.monet.street.StreetTitle;
-import com.cpqd.monet.street.StreetType;
 
 /**
  * Simples objeto de domínio representando uma empresa.
