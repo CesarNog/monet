@@ -1,14 +1,11 @@
 <%@ page import="com.cpqd.monet.company.Company"%>
 <!DOCTYPE html>
 <html>
-<head>
 <meta name="layout" content="main">
 <g:set var="entityName"
 	value="${message(code: 'company.label', default: 'Company')}" />
 <title><g:message code="default.create.label"
 		args="[entityName]" /></title>
-</head>
-<body>
 	<a href="#create-company" class="skip" tabindex="-1"><g:message
 			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 	<div class="nav" role="navigation">
@@ -48,5 +45,4 @@
 			</fieldset>
 		</g:form>
 	</div>
-</body>
 </html>
