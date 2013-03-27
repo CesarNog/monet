@@ -23,7 +23,7 @@
 	<h1 class="title">
 		<g:message code="company.create.list.label" />
 	</h1>
-	<div id="list-company" class="content scaffold-list" role="main">
+	<div id="list-company" class="content" role="main">
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
 				${flash.message}
