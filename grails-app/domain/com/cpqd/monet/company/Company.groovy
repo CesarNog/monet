@@ -1,73 +1,32 @@
 package com.cpqd.monet.company
 
+import com.cpqd.monet.address.Address
+import com.cpqd.monet.address.StreetTitle;
+import com.cpqd.monet.address.StreetType;
 import com.cpqd.monet.contact.Contact
 
 /**
  * Simples objeto de domínio representando uma empresa.
  *
  * @author Cesar Augusto Nogueira (caugusto@cpqd.com.br)
+ * @author Derick Hirata Ichimura (derick@cpqd.com.br)
  */
 class Company {
 
-	//Tipo da empresa
 	CompanyType companyType
-
-	//CNPJ da empresa - Identificador único
 	String cnpj
-
-	//Nome da empresa
 	String name
-
 	String fantasyName
-	String stateSubscription
-	String municipalSubscription
-
-	// CEP - formato NNNNN-NNN
-	String zipCode
-
-	// Estado
-	String uf
-
-	// Localidade
-	String locality
-
-	// Tipo do logradouro
-	StreetType streetType
-
-	// Titulo do logradouro
-	StreetTitle streetTitle
-
-	// Logradouro
-	String street
-
-	// Número da rua
-	Long streetNumber = 0L
-
-	// Tipo de Complemento
-	ComplementType complementType
-
-	// Descrição do Complemento
-	String complementDescription
-
-	// Bairro
-	String neighborhood
-
-	// Razão Social
 	String socialReason
-
-	// Cidade
-	String city
-
-	// Telefone - formatos: NNNN-NNNN ou NNNNNNNN
 	Long telephoneNumber
-
-	// Senha do usuario
 	String userPassword
-	
-	// Se é de prospecção ou não
 	boolean prospect = true;
 
 	static hasMany = [contact:Contact]
+	
+	Contact contact
+	
+	Address address
 	
 	// Validação de campos
 	static constraints = {		
@@ -78,35 +37,11 @@ class Company {
 		companyType blank: false, nullable: false, maxSize:50
 
 		fantasyName blank: false, nullable: true, maxSize:50
-		stateSubscription size: 1..20, blank: false, nullable: true, maxSize:50
-		municipalSubscription size: 1..20, blank: false, nullable: true, maxSize:50
-		zipCode matches: "([0-9]{5})[-. ]?([0-9]{3})", blank: false, nullable: false, maxSize:9, required: true
-		uf blank: false, nullable: true, maxSize:50, required: true
 
-		locality blank: false, nullable: true, maxSize:50
-
-		streetType blank: false, nullable: true
-		streetTitle blank: false, nullable: true
-		street blank: false, nullable: true
-
-		streetNumber min: 0L, blank: false, nullable: true
-
-		// Complemento
-		complementType blank: false, nullable: true
-		complementDescription blank: false, nullable: true
-
-		//Bairro
-		neighborhood blank: false, nullable: true, maxSize:50
-
-		// Razão Social
 		socialReason blank: false, nullable: true, maxSize:50
 
 		city blank: false, nullable: true, maxSize:50
 
-		//Telefone		
-		telephoneNumber matches: "([0-9]{4})[-. ]?([0-9]{4})", maxSize:50, blank: false, nullable: true
-
-		//Senha
-		userPassword blank: false, password: true, nullable: true
+		telephoneNumber matches: "([0-9]{4})[-. ]?([0-9]{4})", maxSize:50, blank: false, nullable: true		
 	}
 }
