@@ -1,3 +1,11 @@
 /com
+/dbdoc
 /grails
+/hibernate
+/messages.properties
+/net
 /org
+/spring
+/snippet
+/_formField.gsp
+/estados.xml

@@ -41,7 +41,7 @@
 			<g:hiddenField name="id" value="${companyInstance?.id}" />
 			<g:hiddenField name="version" value="${companyInstance?.version}" />
 			<fieldset class="form">
-				<g:render template="form" />
+				<g:render template="formProspect" />
 			</fieldset>
 			<fieldset class="buttons">
 				<g:actionSubmit class="save" action="update"

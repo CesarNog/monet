@@ -9,7 +9,7 @@ import com.cpqd.monet.company.Company
  */
 class Locality {
 
-	String locality
+	String name
 
 	String stateSubscription
 	
@@ -24,7 +24,7 @@ class Locality {
 	// Validacao de campos
 	static constraints = {
 
-		locality blank: false, nullable: true, maxSize:50
+		name blank: false, nullable: true, maxSize:50
 
 		stateSubscription size: 1..20, blank: false, nullable: true, maxSize:50
 		

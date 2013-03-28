@@ -26,19 +26,24 @@
 				${flash.message}
 			</div>
 		</g:if>
+		
 		<g:hasErrors bean="${companyInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${companyInstance}" var="error">
 					<li
-						<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
-							error="${error}" /></li>
+						<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
+						<g:message error="${error}" />
+					</li>
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
+		
 		<g:form action="save">
-			<fieldset class="form">
-				<g:render template="form" />
+		
+			<fieldset class="form">		
+				<g:render template="form"/>								
 			</fieldset>
+			
 			<fieldset class="buttons">
 				<g:submitButton name="create" class="save"
 					value="${message(code: 'default.button.create.label', default: 'Create')}" />

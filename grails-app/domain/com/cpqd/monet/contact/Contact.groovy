@@ -3,6 +3,12 @@ package com.cpqd.monet.contact
 import com.cpqd.monet.company.Company
 
 class Contact {
+	
+	Contact(name, phone, email){
+		this.name = name
+		this.phone = phone
+		this.email = email
+	}
 
 	String name;
 	String phone;
@@ -11,8 +17,8 @@ class Contact {
 	static belongsTo = Company
 			
     static constraints = {
+		email blank:false, maxSize:50, unique: true, email:true, nullable: true
 		name blank:false, maxSize:50
-		phone blank:false, maxSize:50, nullable:true
-		email blank:false, maxSize:50, unique: true, email:true		
+		phone blank:false, maxSize:50, nullable:true				
     }
 }
