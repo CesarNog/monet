@@ -1,5 +1,7 @@
 package com.cpqd.monet.company
 
+import grails.converters.XML
+
 import org.springframework.dao.DataIntegrityViolationException
 
 /**
@@ -54,14 +56,26 @@ class CompanyController {
 		log.info "Criando empresa..."
 		println "Criando empresa..."
 
-		def company = companyService.createCompany(params);
+		/*def company = companyService.createCompany(params);
 
 		if (company.hasErrors()) {
 			println "Criando empresa..."
 			return [company: company, types: Company.list()]
-		}
+		}*/
 
-		render(view:"/company/create",  model: [companyInstance: company])
+		render(view:"/company/create",  model: [companyInstance: new Company()])
+	}
+	
+	/**
+	 * Metodo que realizar parser de XML 
+	 * @return
+	 */
+	def parseXML(){		
+		def stream = getClass().classLoader.getResourceAsStream("grails-app/conf/estados.xml")
+		
+		println stream
+		
+		return [data: XML.parse(stream)]
 	}
 
 	/**
@@ -70,15 +84,10 @@ class CompanyController {
 	 */
 	def createProspect() {
 		log.info "Criando empresa..."
-		println "Criando empresa prospecção..."
+		println "Criando empresa prospeccao..."
 		
 		def company = companyService.createCompanyProspect(params);
 		
-		/*if (company.hasErrors()) {
-			println "Criando empresa prospecção..."
-			return [company: company, types: Company.list()]	
-		}*/
-						
 		render(view:"/company/createProspect",  model: [companyInstance: company])		
 	}
 
@@ -87,17 +96,19 @@ class CompanyController {
 	 * @return
 	 */
 	def save() {
+		
 		log.info "Salvando empresa..."
-		println "Mostrando empresa..."
+		println "Salvando empresa..."
 
-		def companyInstance = new Company(params)
-		if (!companyInstance.save(flush: true)) {
-			render(view: "create", model: [companyInstance: companyInstance])
+		def company = companyService.saveCompany(params);
+
+		if (company.hasErrors()) {
+			render(view: "create", model: [companyInstance: company])
 			return
 		}
-
-		flash.message = message(code: 'default.created.message', args: [companyInstance.name])
-		redirect(action: "show", id: companyInstance.id)
+		
+		flash.message = message(code: 'default.created.message', args: [company.name])
+		redirect(action: "show", id: company.id)
 	}
 
 	/**
@@ -108,16 +119,15 @@ class CompanyController {
 		log.info "Salvando empresa prospecção..."
 		println "Mostrando empresa prospecção..."
 
-		def companyInstance = new Company(params)
-		if (!companyInstance.save(flush: true)) {
-			render(view: "createProspect", model: [companyInstance: companyInstance])
+		def companyProspectInstance = companyService.saveCompanyProspect(params);
+
+		if (!companyProspectInstance.save(flush:true)) {
+			render(view: "createProspect", model: [companyInstance: companyProspectInstance])
 			return
 		}
-		if((companyInstance.contactPhone == null) || (companyInstance.contactPhone == "")){
-			companyInstance.contactPhone=" "
-		}
-		flash.message = message(code: 'default.created.message', args: [companyInstance.companyName])
-		redirect(action: "showProspect", id: companyInstance.id)
+
+		flash.message = message(code: 'default.created.message', args: [companyProspectInstance.name])
+		redirect(action: "showProspect", id: companyProspectInstance.id)
 	}
 
 	/**

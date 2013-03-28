@@ -4,18 +4,20 @@
 	<label for="companyType"> <span class="required-indicator">*</span>
 		<g:message code="company.companyType.label" default="Company Type" />:
 	</label>
-	<g:select id="companyType" name="companyType.id"
-		from="${com.cpqd.monet.company.CompanyType.list()}" optionKey="id"
-		optionValue="name" required="true"
-		value="${companyInstance?.companyType?.id}" class="many-to-one" />
+	<g:select id="companyType" 
+			  name="companyType.id"
+		      from="${com.cpqd.monet.company.CompanyType.list()}" 
+		      optionKey="id"
+		 	  optionValue="name" required="true"
+		      value="${companyInstance?.companyType?.id}" 
+		      class="many-to-one" />
 </div>
 
 <div class="fieldcontain">
 	<label for="cnpj"> <span class="required-indicator">*</span> <g:message
 			code="company.cnpj.label" default="Cnpj" />:
 	</label>
-	<g:field type="text" name="cnpj" maxlength="20" required=""
-		value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance?.cnpj != null}"/>
+	<g:field type="text" name="cnpj" maxlength="20" value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance?.cnpj} != null"/>
 </div>
 
 <div class="fieldcontain">
@@ -75,13 +77,13 @@
 		<g:message code="company.locality.label" default="Locality" />:
 	</label>
 	<g:textField name="locality" maxlength="50"
-		value="${companyInstance?.locality}" />
+		value="${companyInstance.locality?.name}" />
 </div>
 
 <div
 	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'streetType', 'error')} ">
 	<label for="streetType"> <g:message
-			code="company.streetType.label" default="Street Type" />:
+			code="street.type.label" default="Street Type" />:
 
 	</label>
 	<g:select id="streetType" name="streetType.id"
@@ -93,7 +95,7 @@
 <div
 	class="fieldcontain">
 	<label for="streetTitle"> <span class="required-indicator">*</span>
-		<g:message code="company.streetTitle.label" default="Street Title" />:
+		<g:message code="street.title.label" default="Street Title" />:
 	</label>
 	<g:select id="streetTitle" name="streetTitle.id"
 		from="${com.cpqd.monet.address.StreetTitle.list()}" optionKey="id"
@@ -103,7 +105,7 @@
 
 <div
 	class="fieldcontain">
-	<label for="street"> <g:message code="company.street.label"
+	<label for="street"> <g:message code="street.address.label"
 			default="Street" />:
 	</label>
 	<g:textField name="street" value="${companyInstance.address?.street}" />
@@ -112,7 +114,7 @@
 <div
 	class="fieldcontain">
 	<label for="streetNumber"> <span class="required-indicator">*</span>
-		<g:message code="company.streetNumber.label" default="Street Number" />:
+		<g:message code="street.number.label" default="Street Number" />:
 	</label>
 	<g:field name="streetNumber" required="true" type="number" min="0"
 		value="${companyInstance.address?.streetNumber}" />
@@ -152,7 +154,7 @@
 <div
 	class="fieldcontain">
 	<label for="contactName"> <span class="required-indicator">*</span>
-		<g:message code="company.contact.name.label" default="Contact Name" />:
+		<g:message code="contact.name.label" default="Contact Name" />:
 	</label>
 	<g:textField name="contactName" maxlength="50" required="true"
 		value="${companyInstance?.contact?.name}" />
@@ -161,7 +163,7 @@
 <div
 	class="fieldcontain">
 	<label for="contactPhone"> <g:message
-			code="company.contact.phone.label" required="true"
+			code="contact.phone.label" required="true"
 			default="Contact Phone" />:
 	</label>
 	<g:textField name="contactPhone" maxlength="12"
@@ -171,7 +173,7 @@
 <div
 	class="fieldcontain">
 	<label for="contactEmail"> <g:message
-			code="company.contact.email.label" default="Contact Email" />:
+			code="contact.email.label" default="Contact Email" />:
 
 	</label>
 	<g:field type="email" name="contactEmail"
@@ -206,14 +208,3 @@
 	<g:field name="telephoneNumber" maxlength="20" type="number"
 		value="${companyInstance?.telephoneNumber}" />
 </div>
-
-<div
-	class="fieldcontain">
-	<label for="userPassword"> <g:message
-			code="company.userPassword.label" default="User Password" />:
-
-	</label>
-	<g:field type="password" name="userPassword"
-		value="${companyInstance?.userPassword}" />
-</div>
-
