@@ -1,11 +1,15 @@
-package com.cpqd.monet.address
+package com.cpqd.monet.license
+
+import com.cpqd.monet.address.StreetTitle;
+import com.cpqd.monet.address.StreetType;
+import com.cpqd.monet.company.ComplementType
 
 /**
  * Simples objeto de domínio representando uma empresa.
  *
  * @author Cesar Augusto Nogueira (caugusto@cpqd.com.br)
  */
-class Address {
+class License {
 
 	String locality
 

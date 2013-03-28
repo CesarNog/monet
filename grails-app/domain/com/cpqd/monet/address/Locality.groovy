@@ -1,33 +1,47 @@
 package com.cpqd.monet.address
 
 import com.cpqd.monet.company.ComplementType
-import com.cpqd.monet.address.StreetType
 
 /**
- * Simples objeto de domÃ­nio representando uma empresa.
+ * Simples objeto de domínio representando uma empresa.
  *
  * @author Cesar Augusto Nogueira (caugusto@cpqd.com.br)
  */
 class Locality {
 
-	String stateSubscription
-	
-	String municipalSubscription
-		
-	String uf
-	
 	String locality
+
+	StreetType streetType
+
+	StreetTitle streetTitle
+
+	String street
+
+	Long streetNumber = 0L
+
+	ComplementType complementType
+
+	String complementDescription
+
+	String neighborhood
 
 	String city
 
-	// ValidaÃ§Ã£o de campos
+	// Validação de campos
 	static constraints = {
 
-		stateSubscription size: 1..20, blank: false, nullable: true, maxSize:50
-		municipalSubscription size: 1..20, blank: false, nullable: true, maxSize:50
-		uf blank: false, nullable: true, maxSize:50, required: true
-		
 		locality blank: false, nullable: true, maxSize:50
+
+		streetType blank: false, nullable: true
+		streetTitle blank: false, nullable: true
+		street blank: false, nullable: true
+
+		streetNumber min: 0L, blank: false, nullable: true
+
+		complementType blank: false, nullable: true
+		complementDescription blank: false, nullable: true
+
+		neighborhood blank: false, nullable: true, maxSize:50
 
 		city blank: false, nullable: true, maxSize:50
 	}

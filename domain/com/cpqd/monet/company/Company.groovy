@@ -7,38 +7,28 @@ package com.cpqd.monet.company
  */
 class Company {
 
-	//Tipo da empresa
 	CompanyType companyType
 
-	//CNPJ da empresa - Identificador único
 	String cnpj
 
-	//Nome da empresa
 	String name
 
 	String fantasyName
 	String stateSubscription
 	String municipalSubscription
 
-	// CEP - formato NNNNN-NNN
 	String zipCode
 
-	// Estado
 	String uf
 
-	// Localidade
 	String locality
 
-	// Tipo do logradouro
 	StreetType streetType
 
-	// Titulo do logradouro
 	StreetTitle streetTitle
 
-	// Logradouro
 	String street
 
-	// Número da rua
 	Long streetNumber = 0L
 
 	// Tipo de Complemento
@@ -118,7 +108,6 @@ class Company {
 		//Telefone		
 		telephoneNumber matches: "([0-9]{4})[-. ]?([0-9]{4})", maxSize:50, blank: false, nullable: true
 
-		//Senha
 		userPassword blank: false, password: true, nullable: true
 	}
 }
