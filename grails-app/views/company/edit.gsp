@@ -41,8 +41,12 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<g:form method="post">
-			<g:hiddenField name="id" value="${companyInstance?.id}" />
+		<g:form method="post">			
+			<g:if test="${companyInstance?.id}">
+				<g:hiddenField name="id" value="${companyInstance?.id}" />
+			</g:if>
+				<g:hiddenField name="company.contact.id" value="${companyInstance?.contact?.id}"/>
+				<g:hiddenField name="company.address.id" value="${companyInstance?.address?.id}"/>			
 			<g:hiddenField name="version" value="${companyInstance?.version}" />
 			<fieldset class="form">
 				<g:render template="form" />

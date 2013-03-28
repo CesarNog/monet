@@ -45,17 +45,6 @@
 					<g:sortableColumn property="fantasyName"
 						title="${message(code: 'company.fantasyName.label', default: 'Fantasy Name')}" />
 
-					<g:sortableColumn property="stateSubscription"
-						title="${message(code: 'company.stateSubscription.label', default: 'State Subscription')}" />
-
-					<g:sortableColumn property="municipalSubscription"
-						title="${message(code: 'company.municipalSubscription.label', default: 'Municipal Subscription')}" />
-
-					<g:sortableColumn property="zipCode"
-						title="${message(code: 'company.zipCode.label', default: 'Zip code')}" />
-
-					<g:sortableColumn property="zipCode"
-						title="${message(code: 'company.uf.label', default: 'UF')}" />
 
 				</tr>
 			</thead>
@@ -77,23 +66,7 @@
 
 						<td>
 							${fieldValue(bean: companyInstance, field: "fantasyName")}
-						</td>
 
-						<td>
-							${fieldValue(bean: companyInstance, field: "stateSubscription")}
-						</td>
-
-						<td>
-							${fieldValue(bean: companyInstance, field: "municipalSubscription")}
-						</td>
-
-						<td>
-							${fieldValue(bean: companyInstance, field: "zipCode")}
-						</td>
-
-						<td>
-							${fieldValue(bean: companyInstance, field: "uf")}
-						</td>
 					</tr>
 				</g:each>
 			</tbody>

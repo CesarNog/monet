@@ -6,32 +6,33 @@ import com.cpqd.monet.company.Company
  * Simples objeto de dom�nio representando uma empresa.
  *
  * @author Cesar Augusto Nogueira (caugusto@cpqd.com.br)
+ * @author Derick Hirata Ichimura (derick@cpqd.com.br)
  */
 class Locality {
 
-	String locality
+	String name
 
 	String stateSubscription
 	
 	String municipalSubscription
-	
-	String uf
-	
-	String city
-	
-	static belongsTo = Company
+		
+	static belongsTo = Address
 
+	//Método construtor para que os valores dos atributos de Locality sejam persistidos
+	Locality(name, stateSubscription, municipalSubscription){
+		this.name = name
+		this.stateSubscription = stateSubscription
+		this.municipalSubscription = municipalSubscription
+	}
+	
 	// Validacao de campos
 	static constraints = {
 
-		locality blank: false, nullable: true, maxSize:50
+		name blank: false, nullable: true, maxSize:50
 
 		stateSubscription size: 1..20, blank: false, nullable: true, maxSize:50
 		
 		municipalSubscription size: 1..20, blank: false, nullable: true, maxSize:50
 		
-        uf blank: false, nullable: true, maxSize:50, required: true
-		
-		city blank: false, nullable: true, maxSize:50
-	}
+		}
 }

@@ -1,6 +1,11 @@
 package com.cpqd.monet.company
 
+import grails.converters.XML
+
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.cpqd.monet.contact.Contact
+import com.cpqd.monet.prospect.Prospect
 
 /**
  * Objeto de controle representando uma empresa.
@@ -54,14 +59,19 @@ class CompanyController {
 		log.info "Criando empresa..."
 		println "Criando empresa..."
 
-		def company = companyService.createCompany(params);
+		render(view:"/company/create",  model: [companyInstance: new Company()])
+	}
 
-		if (company.hasErrors()) {
-			println "Criando empresa..."
-			return [company: company, types: Company.list()]
-		}
+	/**
+	 * Metodo que realizar parser de XML 
+	 * @return
+	 */
+	def parseXML(){
+		def stream = getClass().classLoader.getResourceAsStream("grails-app/conf/estados.xml")
 
-		render(view:"/company/create",  model: [companyInstance: company])
+		println stream
+
+		return [data: XML.parse(stream)]
 	}
 
 	/**
@@ -70,16 +80,11 @@ class CompanyController {
 	 */
 	def createProspect() {
 		log.info "Criando empresa..."
-		println "Criando empresa prospecção..."
-		
-		def company = companyService.createCompanyProspect(params);
-		
-		/*if (company.hasErrors()) {
-			println "Criando empresa prospecção..."
-			return [company: company, types: Company.list()]	
-		}*/
-						
-		render(view:"/company/createProspect",  model: [companyInstance: company])		
+		println "Criando empresa prospeccao..."
+
+		//def companyProspect = companyService.createCompanyProspect(params);
+
+		render(view:"/company/createProspect",  model: [companyInstance: new Prospect()])
 	}
 
 	/**
@@ -87,17 +92,19 @@ class CompanyController {
 	 * @return
 	 */
 	def save() {
-		log.info "Salvando empresa..."
-		println "Mostrando empresa..."
 
-		def companyInstance = new Company(params)
-		if (!companyInstance.save(flush: true)) {
-			render(view: "create", model: [companyInstance: companyInstance])
+		log.info "Salvando empresa..."
+		println "Salvando empresa..."
+
+		def company = companyService.saveCompany(params);
+
+		if (company.hasErrors()) {
+			render(view: "create", model: [companyInstance: company])
 			return
 		}
 
-		flash.message = message(code: 'default.created.message', args: [companyInstance.name])
-		redirect(action: "show", id: companyInstance.id)
+		flash.message = message(code: 'default.created.message', args: [company.name])
+		redirect(action: "show", id: company.id)
 	}
 
 	/**
@@ -105,19 +112,23 @@ class CompanyController {
 	 * @return
 	 */
 	def saveProspect() {
+
 		log.info "Salvando empresa prospecção..."
 		println "Mostrando empresa prospecção..."
 
-		def companyInstance = new Company(params)
-		if (!companyInstance.save(flush: true)) {
-			render(view: "createProspect", model: [companyInstance: companyInstance])
+		def prospectInstance = companyService.saveCompanyProspect(params);
+
+		println "Contato dentro de prospect: " + prospectInstance.contact
+
+		//def companyInstance = parseProspectToCompany(prospectInstance)
+
+		if (!prospectInstance.save(flush:true)) {
+			render(view: "createProspect", model: [companyInstance: prospectInstance])
 			return
 		}
-		if((companyInstance.contactPhone == null) || (companyInstance.contactPhone == "")){
-			companyInstance.contactPhone=" "
-		}
-		flash.message = message(code: 'default.created.message', args: [companyInstance.companyName])
-		redirect(action: "showProspect", id: companyInstance.id)
+
+		flash.message = message(code: 'default.created.message', args: [prospectInstance.name])
+		redirect(action: "showProspect", id: prospectInstance.id)
 	}
 
 	/**
@@ -132,14 +143,14 @@ class CompanyController {
 			[company:company]
 		}
 	}
-	
+
 	/**
 	 * Action que mostra os detalhes de uma empresa do tipo prospecção
 	 * @return
 	 */
 	def showProspect(Long id) {
-		def companyInstance = Company.get(id)
-		if (!companyInstance) {
+		def prospectInstance = Prospect.get(id)
+		if (!prospectInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [
 				message(code: 'company.label', default: 'Company'),
 				id
@@ -148,7 +159,7 @@ class CompanyController {
 			return
 		}
 
-		[companyInstance: companyInstance]
+		[companyInstance: prospectInstance]
 	}
 
 	/**
@@ -207,7 +218,13 @@ class CompanyController {
 	 * @return
 	 */
 	def editProspect(Long id) {
-		def companyInstance = Company.get(id)
+		log.info "Editando empresa de prospecao com id " + id
+		println "Editando empresa de prospecao com id " + id
+	
+		def prospectInstance = Prospect.get(id)
+
+		def companyInstance = parseProspectToCompany(prospectInstance)
+
 		if (!companyInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [
 				message(code: 'company.label', default: 'Company'),
@@ -225,7 +242,7 @@ class CompanyController {
 	 * @return
 	 */
 	def update = {
-		withCompany { person ->
+		withCompany { company ->
 			company.properties = params
 			if(company.validate() && company.save()) {
 				redirect action:"show", id:company.id
@@ -241,7 +258,16 @@ class CompanyController {
 	 * @return
 	 */
 	def update(Long id, Long version) {
+
+		log.info "Atualizando empresa com id " + id
+		println "Atualizando empresa com id " + id
+
+		println Company.get(id)
+
 		def companyInstance = Company.get(id)
+
+		println companyInstance
+
 		if (!companyInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [
 				message(code: 'company.label', default: 'Company'),
@@ -309,6 +335,22 @@ class CompanyController {
 		}
 	}
 
+	/**
+	 * Cria uma empresa com os parâmetros de empresa prospecção
+	 * @param prospect empresa prospecção a ser lida e transformada para empresa
+	 * @return
+	 */
+	private Company parseProspectToCompany(Prospect prospect) {
+
+		println "Prospect recebido para parse: " + prospect
+
+		return new Company(cnpj: prospect.cnpj,
+						   name: prospect.name,
+						   contact: new Contact(prospect.contact.name,
+							   					prospect.contact.phone,
+												prospect.contact.email).save())
+	}
+	
 	/**
 	 * Metodo closure que percorre as empresas
 	 * @param id Identificador único de empresa
