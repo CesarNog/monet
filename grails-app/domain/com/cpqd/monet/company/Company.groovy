@@ -1,8 +1,7 @@
 package com.cpqd.monet.company
 
 import com.cpqd.monet.address.Address
-import com.cpqd.monet.address.StreetTitle;
-import com.cpqd.monet.address.StreetType;
+import com.cpqd.monet.address.Locality
 import com.cpqd.monet.contact.Contact
 
 /**
@@ -17,33 +16,21 @@ class Company {
 	String cnpj
 	String name
 	String fantasyName
-<<<<<<< HEAD
 	String socialReason
-=======
-	String stateSubscription
-	String municipalSubscription
-	String zipCode
-	String uf
-	String locality
-	StreetType streetType
-	StreetTitle streetTitle
-	String street
-	Long streetNumber = 0L
-	ComplementType complementType
-	String complementDescription
-	String neighborhood
-	String socialReason
-	String city
->>>>>>> refs/remotes/origin/master
+		
 	Long telephoneNumber
+	
 	String userPassword
-	boolean prospect = true;
+	
+	boolean prospect = true;	
 
-	static hasMany = [contact:Contact]
+	//static hasMany = [contact:Contact, address: Address, locality: Locality]
 	
 	Contact contact
 	
 	Address address
+	
+	Locality locality	
 	
 	// Validação de campos
 	static constraints = {		
@@ -55,26 +42,8 @@ class Company {
 
 		fantasyName blank: false, nullable: true, maxSize:50
 
-<<<<<<< HEAD
 		socialReason blank: false, nullable: true, maxSize:50
-
-=======
-		streetType blank: false, nullable: true
-		streetTitle blank: false, nullable: true
-		street blank: false, nullable: true
-
-		streetNumber min: 0L, blank: false, nullable: true
-
-		complementType blank: false, nullable: true
-		complementDescription blank: false, nullable: true
-
-		neighborhood blank: false, nullable: true, maxSize:50
-
-		socialReason blank: false, nullable: true, maxSize:50
-
-		city blank: false, nullable: true, maxSize:50
-
->>>>>>> refs/remotes/origin/master
+		
 		telephoneNumber matches: "([0-9]{4})[-. ]?([0-9]{4})", maxSize:50, blank: false, nullable: true		
 	}
 }

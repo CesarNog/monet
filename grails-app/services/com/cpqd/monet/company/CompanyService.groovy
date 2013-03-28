@@ -1,5 +1,8 @@
 package com.cpqd.monet.company
 
+import com.cpqd.monet.contact.Contact
+
+
 /**
  * Classe que representa o serviço responsável pelo tratamento de ações com a entidade domínio Empresa
  *
@@ -25,9 +28,9 @@ class CompanyService {
 	
 	// Cria uma empresa de prospecção (com menos atributos)
 	Company createCompanyProspect(params) {
-		params.company?.prospect = true;
-		def company = new Company(name: params.company?.name, cnpj: params.company?.cnpj, prospect: params.company?.prospect, contactName: params.contactPhone?.cnpj, contactPhone: params.contactPhone?.cnpj)
-		company.save()
+		//params.company?.prospect = true;
+		def company = new Company(name: params.company?.name, cnpj: params.company?.cnpj, prospect: params.company?.prospect, contact: Contact.get(params.contact?.id))
+		//company.save()
 		company
 	}
 	

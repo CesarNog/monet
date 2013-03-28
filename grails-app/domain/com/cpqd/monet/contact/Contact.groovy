@@ -8,12 +8,11 @@ class Contact {
 	String phone;
 	String email;
 	
-	Company company
-	
+	static belongsTo = Company
+			
     static constraints = {
 		name blank:false, maxSize:50
 		phone blank:false, maxSize:50, nullable:true
-		email blank:false, maxSize:50, unique: true, email:true
-		
+		email blank:false, maxSize:50, unique: true, email:true		
     }
 }

@@ -21,8 +21,7 @@ class BootStrap {
 		
 		for (String type in ['AVENIDA', 'RODOVIA', 'RUA']) {
 			new ComplementType(name: type).save(failOnError: true)
-		}				
-
+		}
 	}
 
     def destroy = {

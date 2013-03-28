@@ -1,11 +1,7 @@
 package com.cpqd.monet.address
 
+import com.cpqd.monet.company.Company
 import com.cpqd.monet.company.ComplementType
-<<<<<<< HEAD
-import com.cpqd.monet.address.StreetTitle
-import com.cpqd.monet.address.StreetType
-=======
->>>>>>> refs/remotes/origin/master
 
 /**
  * Simples objeto de domínio representando uma empresa.
@@ -14,11 +10,7 @@ import com.cpqd.monet.address.StreetType
  */
 class Address {
 
-<<<<<<< HEAD
-	String locality
-=======
 	Locality locality
->>>>>>> refs/remotes/origin/master
 
 	StreetType streetType
 
@@ -33,13 +25,18 @@ class Address {
 	String complementDescription
 
 	String neighborhood
-<<<<<<< HEAD
 	
 	String zipCode
-=======
->>>>>>> refs/remotes/origin/master
-
+	
+	String uf
+	
 	String city
+	
+	String stateSubscription
+	
+	String municipalSubscription
+	
+	static belongsTo = Company
 
 	// Validação de campos
 	static constraints = {
@@ -57,11 +54,13 @@ class Address {
 
 		neighborhood blank: false, nullable: true, maxSize:50
 
-<<<<<<< HEAD
 		zipCode matches: "([0-9]{5})[-. ]?([0-9]{3})", blank: false, nullable: false, maxSize:9, required: true
 		
-=======
->>>>>>> refs/remotes/origin/master
 		city blank: false, nullable: true, maxSize:50
+		
+		stateSubscription size: 1..20, blank: false, nullable: true, maxSize:50
+		municipalSubscription size: 1..20, blank: false, nullable: true, maxSize:50
+		
+		uf blank: false, nullable: true, maxSize:50, required: true
 	}
 }
