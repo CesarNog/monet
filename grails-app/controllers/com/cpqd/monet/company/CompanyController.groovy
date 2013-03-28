@@ -57,7 +57,7 @@ class CompanyController {
 		def company = companyService.createCompany(params);
 
 		if (company.hasErrors()) {
-			println "Criando empresa... inicial"
+			println "Criando empresa..."
 			return [company: company, types: Company.list()]
 		}
 
@@ -74,14 +74,11 @@ class CompanyController {
 		
 		def company = companyService.createCompanyProspect(params);
 		
-		/*if (company.hasErrors()) {
+		if (company.hasErrors()) {
 			println "Criando empresa prospecção..."
 			return [company: company, types: Company.list()]	
-		}*/
-		//redirect(action: "showProspect", id: companyInstance.id)
-		
-		render(view:"/company/createProspect",  model: [companyInstance: company])
-		
+		}				
+		render(view:"/company/createProspect",  model: [companyInstance: company])		
 	}
 
 	/**

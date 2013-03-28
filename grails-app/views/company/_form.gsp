@@ -14,16 +14,15 @@
 	<label for="cnpj"> <span class="required-indicator">*</span> <g:message
 			code="company.cnpj.label" default="Cnpj" />:
 	</label>
-	<g:textField name="cnpj" maxlength="20" required=""
-		value="${companyInstance?.cnpj}" autofocus="true" />
+	<g:field type="text" name="cnpj" maxlength="20" required=""
+		value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance?.cnpj != null}"/>
 </div>
 
 <div class="fieldcontain">
 	<label for="name"> <span class="required-indicator">*</span> <g:message
 			code="company.name.label" default="Name" />:
 	</label>
-	<g:textField name="name" maxlength="50" required=""
-		value="${companyInstance?.name}" />
+	<g:textField name="name" maxlength="50" required="" value="${companyInstance?.name}" readonly="${companyInstance?.name} != null"/>
 </div>
 
 <div class="fieldcontain">
@@ -86,24 +85,24 @@
 
 	</label>
 	<g:select id="streetType" name="streetType.id"
-		from="${com.cpqd.monet.company.StreetType.list()}" optionKey="id"
+		from="${com.cpqd.monet.street.StreetType.list()}" optionKey="id"
 		optionValue="name" value="${companyInstance?.streetType?.id}"
 		class="many-to-one" noSelection="['null': '']" />
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'streetTitle', 'error')} required">
+	class="fieldcontain">
 	<label for="streetTitle"> <span class="required-indicator">*</span>
 		<g:message code="company.streetTitle.label" default="Street Title" />:
 	</label>
 	<g:select id="streetTitle" name="streetTitle.id"
-		from="${com.cpqd.monet.company.StreetTitle.list()}" optionKey="id"
+		from="${com.cpqd.monet.street.StreetTitle.list()}" optionKey="id"
 		optionValue="name" value="${companyInstance?.streetTitle?.id}"
 		class="many-to-one" noSelection="['null': '']" />
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'street', 'error')} ">
+	class="fieldcontain">
 	<label for="street"> <g:message code="company.street.label"
 			default="Street" />:
 	</label>
@@ -111,7 +110,7 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'streetNumber', 'error')} required">
+	class="fieldcontain">
 	<label for="streetNumber"> <span class="required-indicator">*</span>
 		<g:message code="company.streetNumber.label" default="Street Number" />:
 	</label>
@@ -120,7 +119,7 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'complementType', 'error')} required">
+	class="fieldcontain">
 	<label for="complementType"> <span class="required-indicator">*</span>
 		<g:message code="company.complementType.label"
 			default="Complement Type" />:
@@ -132,7 +131,7 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'complementDescription', 'error')} ">
+	class="fieldcontain">
 	<label for="complementDescription"> <g:message
 			code="company.complementDescription.label"
 			default="Complement Description" />:
@@ -142,7 +141,7 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'neighborhood', 'error')} required">
+	class="fieldcontain">
 	<label for="neighborhood"> <span class="required-indicator">*</span>
 		<g:message code="company.neighborhood.label" default="Neighborhood" />:
 	</label>
@@ -151,36 +150,36 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'contactName', 'error')} required">
+	class="fieldcontain">
 	<label for="contactName"> <span class="required-indicator">*</span>
-		<g:message code="company.contactName.label" default="Contact Name" />:
+		<g:message code="company.contact.name.label" default="Contact Name" />:
 	</label>
 	<g:textField name="contactName" maxlength="50" required="true"
-		value="${companyInstance?.contactName}" />
+		value="${companyInstance?.contact?.name}" />
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'contactPhone', 'error')} required">
+	class="fieldcontain">
 	<label for="contactPhone"> <g:message
-			code="company.contactPhone.label" required="true"
+			code="company.contact.phone.label" required="true"
 			default="Contact Phone" />:
 	</label>
 	<g:textField name="contactPhone" maxlength="12"
-		value="${companyInstance?.contactPhone}" />
+		value="${companyInstance?.contact?.phone}" />
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'contactEmail', 'error')} ">
+	class="fieldcontain">
 	<label for="contactEmail"> <g:message
-			code="company.contactEmail.label" default="Contact Email" />:
+			code="company.contact.email.label" default="Contact Email" />:
 
 	</label>
 	<g:field type="email" name="contactEmail"
-		value="${companyInstance?.contactEmail}" />
+		value="${companyInstance?.contact?.email}" readonly="${companyInstance?.contact?.email} != null" />
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'socialReason', 'error')} ">
+	class="fieldcontain">
 	<label for="socialReason"> <g:message
 			code="company.socialReason.label" default="Social Reason" />:
 
@@ -190,7 +189,7 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'city', 'error')} ">
+	class="fieldcontain">
 	<label for="city"> <g:message code="company.city.label"
 			default="City" />:
 
@@ -200,7 +199,7 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'telephoneNumber', 'error')} ">
+	class="fieldcontain">
 	<label for="telephoneNumber"> <g:message
 			code="company.telephoneNumber.label" default="Telephone Number" />:
 	</label>
@@ -209,7 +208,7 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'userPassword', 'error')} ">
+	class="fieldcontain">
 	<label for="userPassword"> <g:message
 			code="company.userPassword.label" default="User Password" />:
 

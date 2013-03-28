@@ -40,8 +40,6 @@ class Company {
 
 		socialReason blank: false, nullable: true, maxSize:50
 
-		city blank: false, nullable: true, maxSize:50
-
 		telephoneNumber matches: "([0-9]{4})[-. ]?([0-9]{4})", maxSize:50, blank: false, nullable: true		
 	}
 }

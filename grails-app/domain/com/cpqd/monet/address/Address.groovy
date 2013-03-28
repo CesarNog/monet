@@ -1,7 +1,7 @@
 package com.cpqd.monet.address
 
 import com.cpqd.monet.company.ComplementType
-import com.cpqd.monet.street.StreetTitle
+import com.cpqd.monet.address.StreetTitle
 import com.cpqd.monet.address.StreetType
 
 /**
