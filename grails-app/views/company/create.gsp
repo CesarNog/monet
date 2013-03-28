@@ -1,5 +1,5 @@
 <%@ page import="com.cpqd.monet.company.Company"%>
-
+<meta name="layout" content="main">
 <div class="grid_10 prefix_1 suffix_1">
 
 	<g:set var="entityName"

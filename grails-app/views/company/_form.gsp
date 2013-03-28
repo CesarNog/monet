@@ -85,7 +85,7 @@
 
 	</label>
 	<g:select id="streetType" name="streetType.id"
-		from="${com.cpqd.monet.street.StreetType.list()}" optionKey="id"
+		from="${com.cpqd.monet.address.StreetType.list()}" optionKey="id"
 		optionValue="name" value="${companyInstance?.streetType?.id}"
 		class="many-to-one" noSelection="['null': '']" />
 </div>
@@ -96,7 +96,7 @@
 		<g:message code="company.streetTitle.label" default="Street Title" />:
 	</label>
 	<g:select id="streetTitle" name="streetTitle.id"
-		from="${com.cpqd.monet.street.StreetTitle.list()}" optionKey="id"
+		from="${com.cpqd.monet.address.StreetTitle.list()}" optionKey="id"
 		optionValue="name" value="${companyInstance?.streetTitle?.id}"
 		class="many-to-one" noSelection="['null': '']" />
 </div>
