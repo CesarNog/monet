@@ -17,7 +17,7 @@
 	<label for="cnpj"> <span class="required-indicator">*</span> <g:message
 			code="company.cnpj.label" default="Cnpj" />:
 	</label>
-	<g:field type="text" name="cnpj" maxlength="20" value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance?.cnpj} != null"/>
+	<g:field type="text" name="cnpj" maxlength="20" value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance?.prospect}"/>
 </div>
 
 <div class="fieldcontain">
@@ -41,7 +41,7 @@
 			code="company.stateSubscription.label" default="State Subscription" />:
 	</label>
 	<g:textField name="stateSubscription" maxlength="20"
-		value="${companyInstance.locality?.stateSubscription}" />
+		value="${companyInstance.address?.locality?.stateSubscription}" />
 </div>
 
 <div class="fieldcontain">
@@ -51,7 +51,7 @@
 			default="Municipal Subscription" />:
 	</label>
 	<g:textField name="municipalSubscription" maxlength="20"
-		value="${companyInstance.locality?.municipalSubscription}" />
+		value="${companyInstance.address?.locality?.municipalSubscription}" />
 </div>
 
 <div class="fieldcontain">
@@ -77,7 +77,7 @@
 		<g:message code="company.locality.label" default="Locality" />:
 	</label>
 	<g:textField name="locality" maxlength="50"
-		value="${companyInstance.locality?.name}" />
+		value="${companyInstance.address?.locality?.name}" />
 </div>
 
 <div

@@ -36,8 +36,6 @@ class Address {
 	
 	String municipalSubscription
 	
-	static belongsTo = Company
-
 	// Validação de campos
 	static constraints = {
 

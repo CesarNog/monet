@@ -21,14 +21,10 @@ class Company {
 	Long telephoneNumber
 	
 	boolean prospect = true;	
-
-	static hasMany = [contact: Contact, address: Address, locality: Locality]
 	
 	Contact contact
 	
 	Address address
-	
-	Locality locality	
 	
 	// Validação de campos
 	static constraints = {		
@@ -38,8 +34,6 @@ class Company {
 		address nullable: true
 		
 		contact nullable: true
-		
-		locality nullable: true		
 		
 		name size: 1..50, blank: false, nullable: true, maxSize:50
 
