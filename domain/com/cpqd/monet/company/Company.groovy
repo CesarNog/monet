@@ -62,14 +62,14 @@ class Company {
 
 	// Senha do usuario
 	String userPassword
-	
+
 	// Se é de prospecção ou não
 	boolean prospect = true;
 
 	// Validação de campos
-	static constraints = {		
+	static constraints = {
 		cnpj blank:false, unique:true, matches:"([0-9]{2})[.. ]?([0-9]{3})[.. ]?([0-9]{3})[/. ]?([0-9]{4})[-. ]?([0-9]{2})"
-		
+
 		name size: 1..50, blank: false, nullable: true, maxSize:50
 
 		companyType blank: false, nullable: false, maxSize:50
@@ -105,7 +105,7 @@ class Company {
 
 		city blank: false, nullable: true, maxSize:50
 
-		//Telefone		
+		//Telefone
 		telephoneNumber matches: "([0-9]{4})[-. ]?([0-9]{4})", maxSize:50, blank: false, nullable: true
 
 		userPassword blank: false, password: true, nullable: true

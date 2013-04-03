@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.cpqd.monet.company
 
 import com.cpqd.monet.address.Address
@@ -91,3 +92,40 @@ class Company {
 	}
 }
 >>>>>>> 0c84f424854bf0bfa77b19c98f0edf52e7fa9d9c
+=======
+package com.cpqd.monet.company
+
+import com.cpqd.monet.address.Address
+import com.cpqd.monet.prospect.Prospect
+
+/**
+ * Objeto domínio representando uma empresa.
+ *
+ * @author Cesar Augusto Nogueira (caugusto@cpqd.com.br)
+ * @author Derick Hirata Ichimura (derick@cpqd.com.br)
+ */
+class Company extends Prospect{
+	
+	Address address
+	
+	CompanyType companyType
+	
+	String fantasyName
+	String socialReason		
+	Long telephoneNumber
+		
+	// Validação de campos
+	static constraints = {
+
+		address nullable: true
+
+		companyType blank: false, nullable: true, maxSize:50
+
+		fantasyName blank: false, nullable: true, maxSize:50
+
+		socialReason blank: false, nullable: true, maxSize:50
+		
+		telephoneNumber matches: "([0-9]{4})[-. ]?([0-9]{4})", maxSize:50, blank: false, nullable: true		
+	}
+}
+>>>>>>> ae5e50aea7b888f240cb3a8e24c811d56921379d

@@ -51,10 +51,15 @@ grails.project.dependency.resolution = {
 		
 		runtime ":jquery-ui:1.8.15"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		
 		runtime ":jquery-validation:1.9"
 >>>>>>> 0c84f424854bf0bfa77b19c98f0edf52e7fa9d9c
+=======
+		
+		runtime ":jquery-validation:1.9"
+>>>>>>> ae5e50aea7b888f240cb3a8e24c811d56921379d
         
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"

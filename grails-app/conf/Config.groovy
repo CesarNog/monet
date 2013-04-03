@@ -90,7 +90,11 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+<<<<<<< HEAD
 // Added by the JQuery Validation UI plugin:
+=======
+// Added by the JQuery Validation UI plugin:
+>>>>>>> ae5e50aea7b888f240cb3a8e24c811d56921379d
 jqueryValidationUi {
 	errorClass = 'error'
 	validClass = 'valid'
@@ -166,4 +170,8 @@ jqueryValidationUi {
     lettersonly:'true'
 	]	
 }
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> ae5e50aea7b888f240cb3a8e24c811d56921379d

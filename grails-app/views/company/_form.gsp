@@ -1,11 +1,16 @@
 <%@ page import="com.cpqd.monet.company.Company"%>
+<%@ page import="com.cpqd.monet.prospect.Prospect"%>
 
 <div class="fieldcontain">
 	<label for="companyType"> <span class="required-indicator">*</span>
 		<g:message code="company.companyType.label" default="Company Type" />:
 	</label>
 	<g:select id="companyType" 
+<<<<<<< HEAD
 			  name="companyType.id"
+=======
+			  name="companyType"
+>>>>>>> ae5e50aea7b888f240cb3a8e24c811d56921379d
 		      from="${com.cpqd.monet.company.CompanyType.list()}" 
 		      optionKey="id"
 		 	  optionValue="name" required="true"
@@ -17,14 +22,18 @@
 	<label for="cnpj"> <span class="required-indicator">*</span> <g:message
 			code="company.cnpj.label" default="Cnpj" />:
 	</label>
+<<<<<<< HEAD
 	<g:field type="text" name="cnpj" maxlength="20" value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance?.cnpj} != null"/>
+=======
+	<g:field type="text" name="cnpj" maxlength="20" value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance instanceof Prospect}"/>
+>>>>>>> ae5e50aea7b888f240cb3a8e24c811d56921379d
 </div>
 
 <div class="fieldcontain">
 	<label for="name"> <span class="required-indicator">*</span> <g:message
 			code="company.name.label" default="Name" />:
 	</label>
-	<g:textField name="name" maxlength="50" required="" value="${companyInstance?.name}" readonly="${companyInstance?.name} != null"/>
+	<g:textField name="name" maxlength="50" required="" value="${companyInstance?.name}" readonly="${companyInstance instanceof Prospect}"/>
 </div>
 
 <div class="fieldcontain">
@@ -41,7 +50,7 @@
 			code="company.stateSubscription.label" default="State Subscription" />:
 	</label>
 	<g:textField name="stateSubscription" maxlength="20"
-		value="${companyInstance.locality?.stateSubscription}" />
+		value="${companyInstance.address?.locality?.stateSubscription}" />
 </div>
 
 <div class="fieldcontain">
@@ -51,7 +60,7 @@
 			default="Municipal Subscription" />:
 	</label>
 	<g:textField name="municipalSubscription" maxlength="20"
-		value="${companyInstance.locality?.municipalSubscription}" />
+		value="${companyInstance.address?.locality?.municipalSubscription}" />
 </div>
 
 <div class="fieldcontain">
@@ -77,7 +86,11 @@
 		<g:message code="company.locality.label" default="Locality" />:
 	</label>
 	<g:textField name="locality" maxlength="50"
+<<<<<<< HEAD
 		value="${companyInstance.locality?.name}" />
+=======
+		value="${companyInstance.address?.locality?.name}" />
+>>>>>>> ae5e50aea7b888f240cb3a8e24c811d56921379d
 </div>
 
 <div
@@ -157,7 +170,7 @@
 		<g:message code="contact.name.label" default="Contact Name" />:
 	</label>
 	<g:textField name="contactName" maxlength="50" required="true"
-		value="${companyInstance?.contact?.name}" />
+		value="${companyInstance?.contact?.name}" readonly="${companyInstance instanceof Prospect}" />
 </div>
 
 <div
@@ -167,7 +180,7 @@
 			default="Contact Phone" />:
 	</label>
 	<g:textField name="contactPhone" maxlength="12"
-		value="${companyInstance?.contact?.phone}" />
+		value="${companyInstance?.contact?.phone}" readonly="${companyInstance instanceof Prospect}" />
 </div>
 
 <div
@@ -177,7 +190,7 @@
 
 	</label>
 	<g:field type="email" name="contactEmail"
-		value="${companyInstance?.contact?.email}" readonly="${companyInstance?.contact?.email} != null" />
+		value="${companyInstance?.contact?.email}" readonly="${companyInstance instanceof Prospect}" />
 </div>
 
 <div
