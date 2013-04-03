@@ -52,7 +52,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
 						<td><g:link action="show" id="${companyInstance.id}">
-								${fieldValue(bean: companyInstance, field: "companyName")}
+								${fieldValue(bean: companyInstance, field: "name")}
 							</g:link></td>
 
 						<td>
@@ -60,15 +60,15 @@
 						</td>
 
 						<td>
-							${fieldValue(bean: companyInstance, field: "contactName")}
+							${fieldValue(bean: companyInstance, field: "contact.name")}
 						</td>
 
 						<td>
-							${fieldValue(bean: companyInstance, field: "contactPhone")}
+							${fieldValue(bean: companyInstance, field: "contact.phone")}
 						</td>
 
 						<td>
-							${fieldValue(bean: companyInstance, field: "email")}
+							${fieldValue(bean: companyInstance, field: "contact.phone")}
 						</td>
 
 					</tr>

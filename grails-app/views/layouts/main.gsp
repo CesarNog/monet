@@ -31,7 +31,11 @@
 <g:layoutHead />
 
 <g:javascript library="jquery"/>
+<<<<<<< HEAD
 <r:require modules="nine-sixty-grid-system, jquery, jquery-ui, application, jquery-validation-ui" />
+=======
+<r:require modules="nine-sixty-grid-system, jquery, jquery-ui, application" />
+>>>>>>> 0c84f424854bf0bfa77b19c98f0edf52e7fa9d9c
 <r:layoutResources />
 </head>
 

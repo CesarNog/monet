@@ -4,10 +4,13 @@
 	<label for="companyType"> <span class="required-indicator">*</span>
 		<g:message code="company.companyType.label" default="Company Type" />:
 	</label>
-	<g:select id="companyType" name="companyType.id"
-		from="${com.cpqd.monet.company.CompanyType.list()}" optionKey="id"
-		optionValue="name" required="true"
-		value="${companyInstance?.companyType?.id}" class="many-to-one" />
+	<g:select id="companyType" 
+			  name="companyType.id"
+		      from="${com.cpqd.monet.company.CompanyType.list()}" 
+		      optionKey="id"
+		 	  optionValue="name" required="true"
+		      value="${companyInstance?.companyType?.id}" 
+		      class="many-to-one" />
 </div>
 
 <div class="fieldcontain">
@@ -102,7 +105,7 @@
 
 <div
 	class="fieldcontain">
-	<label for="street"> <g:message code="company.street.label"
+	<label for="street"> <g:message code="street.address.label"
 			default="Street" />:
 	</label>
 	<g:textField name="street" value="${companyInstance.address?.street}" />

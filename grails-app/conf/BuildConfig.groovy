@@ -50,6 +50,11 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.9.1"
 		
 		runtime ":jquery-ui:1.8.15"
+<<<<<<< HEAD
+=======
+		
+		runtime ":jquery-validation:1.9"
+>>>>>>> 0c84f424854bf0bfa77b19c98f0edf52e7fa9d9c
         
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
@@ -59,7 +64,7 @@ grails.project.dependency.resolution = {
 		runtime ":nine-sixty-grid-system:1.0"
 		runtime ":resources:1.2.RC2"
 		
-		compile ":nine-sixty-grid-system:1.0"
+		compile ":nine-sixty-grid-system:1.0"		
 
         build ":tomcat:$grailsVersion"		
 
