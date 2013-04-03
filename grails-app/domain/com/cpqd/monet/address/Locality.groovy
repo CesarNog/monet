@@ -3,9 +3,10 @@ package com.cpqd.monet.address
 import com.cpqd.monet.company.Company
 
 /**
- * Simples objeto de dom�nio representando uma empresa.
+ * Classe que contem detalhes do endereço da Empresa
  *
  * @author Cesar Augusto Nogueira (caugusto@cpqd.com.br)
+ * @author Derick H.I. Kaiser (derick@cpqd.com.br)
  */
 class Locality {
 
@@ -14,13 +15,16 @@ class Locality {
 	String stateSubscription
 	
 	String municipalSubscription
-	
-	String uf
-	
-	String city
-	
-	static belongsTo = Company
+		
+	static belongsTo = Address
 
+	//Método construtor para que os valores dos atributos de Locality sejam persistidos
+	Locality(name, stateSubscription, municipalSubscription){
+		this.name = name
+		this.stateSubscription = stateSubscription
+		this.municipalSubscription = municipalSubscription
+	}
+	
 	// Validacao de campos
 	static constraints = {
 
@@ -30,8 +34,5 @@ class Locality {
 		
 		municipalSubscription size: 1..20, blank: false, nullable: true, maxSize:50
 		
-        uf blank: false, nullable: true, maxSize:50, required: true
-		
-		city blank: false, nullable: true, maxSize:50
-	}
+		}
 }

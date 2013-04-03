@@ -29,22 +29,24 @@ class CompanyService {
 	// Cria uma empresa de prospecção (com menos atributos)
 	Company createCompanyProspect(params) {
 		params.company?.prospect = true;
-		println "Id do contato: " + params.company?.contact
-		def company = new Company(params)
+		def company = new Company(name: params.company?.name, cnpj: params.company?.cnpj, prospect: true, contact: Contact.get(params.company?.contact?.id))
 		company
 	}
 
 	// Salva uma empresa com todos os atributos
 	Company saveCompanyProspect(params) {
 
-		println "Contato: " + params.company?.contact		
+		if(params.company?.prospect != null) {
+			params.company?.prospect = false;
+		}
+		
+		println "Id do contato: " + params.company?.contact?.id
+		
+		println "CNPJ: " + params.company?.cnpj
 
-		def companyProspectCreated = new Company(name: params.company?.name, 
-												 cnpj: params.company?.cnpj, 
-												 prospect: false, 
-												 contact: new Contact(params.company?.contact?.name, params.company?.contact?.phone, params.company?.contact?.email).save())
+		def companyProspectCreated = new Company(name: params.company?.name, cnpj: params.company?.cnpj, prospect: params.company?.prospect, contact: Contact.load(params.company?.contact?.id))
 
-		//companyProspectCreated.save(flush:true)
+		companyProspectCreated.save()
 		companyProspectCreated
 	}
 
@@ -61,12 +63,12 @@ class CompanyService {
 				cnpj: params.company?.cnpj,
 				fantasyname: params.company?.fantasyname,
 				socialReason: params.company?.socialReason,
-				telephoneNumber: params.company?.telephoneNumber,
+				telephoneNumber: params.company?.telephoneNumber,				
 				name: params.company?.name,
 				address: new Address(params.company?.address),
 				locality: new Locality(params.company?.locality),
-				contact: new Contact(params.company?.contact).save(),
-				companyType: CompanyType.get(params.company?.companyType?.id).save())
+				contact: new Contact(params.company?.contact),
+				companyType: CompanyType.get(params.company?.companyType?.id))
 
 		companyCreatedInstance.save()
 		companyCreatedInstance

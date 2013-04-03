@@ -4,20 +4,17 @@
 	<label for="companyType"> <span class="required-indicator">*</span>
 		<g:message code="company.companyType.label" default="Company Type" />:
 	</label>
-	<g:select id="companyType" 
-			  name="companyType.id"
-		      from="${com.cpqd.monet.company.CompanyType.list()}" 
-		      optionKey="id"
-		 	  optionValue="name" required="true"
-		      value="${companyInstance?.companyType?.id}" 
-		      class="many-to-one" />
+	<g:select id="companyType" name="companyType.id"
+		from="${com.cpqd.monet.company.CompanyType.list()}" optionKey="id"
+		optionValue="name" required="true"
+		value="${companyInstance?.companyType?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain">
 	<label for="cnpj"> <span class="required-indicator">*</span> <g:message
 			code="company.cnpj.label" default="Cnpj" />:
 	</label>
-	<g:field type="text" name="cnpj" maxlength="20" value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance?.prospect}"/>
+	<g:field type="text" name="cnpj" maxlength="20" value="${companyInstance?.cnpj}" autofocus="true" readonly="${companyInstance?.cnpj} != null"/>
 </div>
 
 <div class="fieldcontain">
@@ -41,7 +38,7 @@
 			code="company.stateSubscription.label" default="State Subscription" />:
 	</label>
 	<g:textField name="stateSubscription" maxlength="20"
-		value="${companyInstance.address?.locality?.stateSubscription}" />
+		value="${companyInstance.locality?.stateSubscription}" />
 </div>
 
 <div class="fieldcontain">
@@ -51,7 +48,7 @@
 			default="Municipal Subscription" />:
 	</label>
 	<g:textField name="municipalSubscription" maxlength="20"
-		value="${companyInstance.address?.locality?.municipalSubscription}" />
+		value="${companyInstance.locality?.municipalSubscription}" />
 </div>
 
 <div class="fieldcontain">
@@ -77,7 +74,7 @@
 		<g:message code="company.locality.label" default="Locality" />:
 	</label>
 	<g:textField name="locality" maxlength="50"
-		value="${companyInstance.address?.locality?.name}" />
+		value="${companyInstance.locality?.name}" />
 </div>
 
 <div
@@ -105,7 +102,7 @@
 
 <div
 	class="fieldcontain">
-	<label for="street"> <g:message code="street.address.label"
+	<label for="street"> <g:message code="company.street.label"
 			default="Street" />:
 	</label>
 	<g:textField name="street" value="${companyInstance.address?.street}" />

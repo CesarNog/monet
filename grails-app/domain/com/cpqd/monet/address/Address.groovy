@@ -4,12 +4,13 @@ import com.cpqd.monet.company.Company
 import com.cpqd.monet.company.ComplementType
 
 /**
- * Simples objeto de domínio representando uma empresa.
+ * Classe que contem o endereço de cada Empresa
  *
  * @author Cesar Augusto Nogueira (caugusto@cpqd.com.br)
+ * @author Derick H.I. Kaiser (derick@cpqd.com.br)
  */
 class Address {
-
+	
 	Locality locality
 
 	StreetType streetType
@@ -35,6 +36,26 @@ class Address {
 	String stateSubscription
 	
 	String municipalSubscription
+	
+	static belongsTo = Company
+
+	//Método construtor para que os valores dos atributos de Address sejam persistidos
+	Address(locality, streetType, streetTitle, street, streetNumber, complementType, complementDescription,
+		neighborhood, zipCode, uf, city, stateSubscription, municipalSubscription){
+		this.locality = locality
+		this.streetType = streetType
+		this.streetTitle = streetTitle
+		this.street = street
+		this.streetNumber = streetNumber
+		this.complementType = complementType
+		this.complementDescription = complementDescription
+		this.neighborhood = neighborhood
+		this.zipCode = zipCode
+		this.uf = uf
+		this.city = city
+		this.stateSubscription = stateSubscription
+		this.municipalSubscription = municipalSubscription
+	}
 	
 	// Validação de campos
 	static constraints = {

@@ -1,8 +1,10 @@
 package com.cpqd.monet.company
 
-import grails.converters.XML
-
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.cpqd.monet.address.Address
+import com.cpqd.monet.address.Locality
+import com.cpqd.monet.contact.Contact
 
 /**
  * Objeto de controle representando uma empresa.
@@ -55,27 +57,18 @@ class CompanyController {
 	def create() {
 		log.info "Criando empresa..."
 		println "Criando empresa..."
+		
+		def stream = getClass().classLoader.getResourceAsStream("grails-app/conf/sample.xml")
+		[data: XML.parse(stream)]
 
-		/*def company = companyService.createCompany(params);
+		def company = companyService.createCompany(params);
 
 		if (company.hasErrors()) {
 			println "Criando empresa..."
 			return [company: company, types: Company.list()]
-		}*/
+		}
 
-		render(view:"/company/create",  model: [companyInstance: new Company()])
-	}
-	
-	/**
-	 * Metodo que realizar parser de XML 
-	 * @return
-	 */
-	def parseXML(){		
-		def stream = getClass().classLoader.getResourceAsStream("grails-app/conf/estados.xml")
-		
-		println stream
-		
-		return [data: XML.parse(stream)]
+		render(view:"/company/create",  model: [companyInstance: company])
 	}
 
 	/**
@@ -84,7 +77,7 @@ class CompanyController {
 	 */
 	def createProspect() {
 		log.info "Criando empresa..."
-		println "Criando empresa prospeccao..."
+		println "Criando empresa prospecção..."
 		
 		def company = companyService.createCompanyProspect(params);
 		
@@ -119,12 +112,12 @@ class CompanyController {
 		log.info "Salvando empresa prospecção..."
 		println "Mostrando empresa prospecção..."
 
-		def companyProspectInstance = companyService.saveCompanyProspect(params);
-
+		def companyProspectInstance = new Company(params)
+		
 		if (!companyProspectInstance.save(flush:true)) {
 			render(view: "createProspect", model: [companyInstance: companyProspectInstance])
 			return
-		}
+		}		
 
 		flash.message = message(code: 'default.created.message', args: [companyProspectInstance.name])
 		redirect(action: "showProspect", id: companyProspectInstance.id)
