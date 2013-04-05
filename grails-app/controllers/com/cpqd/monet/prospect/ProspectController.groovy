@@ -2,8 +2,8 @@ package com.cpqd.monet.prospect
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import com.cpqd.monet.address.Address
 import com.cpqd.monet.company.Company
+import com.cpqd.monet.contact.Contact
 
 class ProspectController {
 
@@ -20,7 +20,7 @@ class ProspectController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [prospectInstanceList: Prospect.list(params), prospectInstanceTotal: Prospect.count()]
+        [prospectInstanceList: Prospect.list(params) + Company.list(), prospectInstanceTotal: Prospect.count() + Company.count()]
     }
 
     def create() {
@@ -39,7 +39,7 @@ class ProspectController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'prospect.label', default: 'Prospect'), prospectInstance.id])
+        flash.message = message(code: 'default.created.message', args: [prospectInstance.name])
         redirect(action: "show", id: prospectInstance.id)
     }
 
@@ -57,15 +57,22 @@ class ProspectController {
     def edit(Long id) {
         def prospectInstance = Prospect.get(id)
 		
-		def companyInstance = new Company(cnpj: prospectInstance.cnpj, 
-										  name: prospectInstance.name, 
-										  contact: prospectInstance.contact, 
-										  address: new Address().save())
-
-		println companyInstance
 		
-        if (!companyInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'prospect.label', default: 'Prospect'), id])
+		println prospectInstance.name
+		println prospectInstance.cnpj
+		println prospectInstance.contact.name
+		println prospectInstance.contact.phone
+		println prospectInstance.contact.email
+				
+		def companyInstance = parseProspectToCompany(prospectInstance)
+		
+		prospectInstance.delete(flush: true)
+		
+        if (!companyInstance.save()) { 
+			companyInstance.errors.each {
+				println it
+			}
+            flash.message = message(code: 'default.not.found.message', args: [prospectInstance.name, prospectInstance.id])
             redirect(action: "list")
             return
         }
@@ -120,4 +127,14 @@ class ProspectController {
             redirect(action: "show", id: id)
         }
     }
+
+	private Company parseProspectToCompany(Prospect prospect) {
+				println "Prospect recebido para parse: " + prospect
+		
+				return new Company(cnpj: prospect.cnpj,
+								   name: prospect.name,
+								   contact: new Contact(name: prospect.contact.name,
+														phone: prospect.contact.phone,
+														email: prospect.contact.email).save(flush:true))
+			}
 }

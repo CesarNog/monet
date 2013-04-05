@@ -13,4 +13,9 @@ modules = {
 		resource id:"qtip", url:[plugin:'jqueryValidationUi', dir:'js/qTip', file:'jquery.qtip.pack.js']
 		resource id:"qtip-theme", url:[plugin:'jqueryValidationUi', dir:'css/qTip', file:'jquery.qtip.css']
 	}
+	
+	'jquery-migrate' {
+		resource url:'js/jquery-migrate-1.1.1.min.js'
+	}
+
 }

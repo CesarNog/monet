@@ -41,8 +41,7 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<g:form method="post"
-			>
+		<g:form method="post">
 			<g:hiddenField name="id" value="${prospectInstance?.id}" />
 			<g:hiddenField name="version" value="${prospectInstance?.version}" />
 			<fieldset class="form">

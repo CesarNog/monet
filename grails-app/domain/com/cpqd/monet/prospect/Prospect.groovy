@@ -14,9 +14,10 @@ class Prospect{
 
 	String name
 
-	Contact contact
+	static hasOne = [contact: Contact]
 
 	static constraints = {
+		contact nullable: true
 		cnpj blank: false, unique:true, nullable:false
 		name size: 1..50, blank: false, nullable: false, maxSize:50
 	}

@@ -4,8 +4,7 @@
 <meta name="layout" content="main">
 <g:set var="entityName"
 	value="${message(code: 'prospect.label', default: 'Prospect')}" />
-<title><g:message code="default.create.label"
-		args="[entityName]" /></title>
+<title><g:message code="prospect.create.label" /></title>
 
 	<a href="#create-prospect" class="skip"
 		tabindex="-1"><g:message code="default.link.skip.label"

@@ -38,17 +38,7 @@ class CompanyController {
 	 */
 	def list(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
-		[companyInstanceList: Company.list(params) + Prospect.list(params), companyInstanceTotal: Company.count() + Prospect.count()]
-	}
-
-	/**
-	 * Action que chama a Lista das empresas do tipo prospecção
-	 * @param max Número máximo de registros
-	 * @return
-	 */
-	def listProspect(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
-		[companyInstanceList: Company.list(params), companyInstanceTotal: Company.count()]
+		[companyInstanceList: Company.list(params) + Prospect.list(), companyInstanceTotal: Company.count() + Prospect.count()]
 	}
 
 	/**
@@ -75,19 +65,6 @@ class CompanyController {
 	}
 
 	/**
-	 * Action que chama a lista de criação das empresas do tipo prospecção 
-	 * @return
-	 */
-	def createProspect() {
-		log.info "Criando empresa..."
-		println "Criando empresa prospeccao..."
-
-		//def companyProspect = companyService.createCompanyProspect(params);
-
-		render(view:"/company/createProspect",  model: [companyInstance: new Prospect()])
-	}
-
-	/**
 	 * Action que salva uma empresa 
 	 * @return
 	 */
@@ -108,30 +85,6 @@ class CompanyController {
 	}
 
 	/**
-	 * Action que salva uma empresa de prospecção
-	 * @return
-	 */
-	def saveProspect() {
-
-		log.info "Salvando empresa prospecção..."
-		println "Mostrando empresa prospecção..."
-
-		def prospectInstance = companyService.saveCompanyProspect(params);
-
-		println "Contato dentro de prospect: " + prospectInstance.contact
-
-		//def companyInstance = parseProspectToCompany(prospectInstance)
-
-		if (!prospectInstance.save(flush:true)) {
-			render(view: "createProspect", model: [companyInstance: prospectInstance])
-			return
-		}
-
-		flash.message = message(code: 'default.created.message', args: [prospectInstance.name])
-		redirect(action: "showProspect", id: prospectInstance.id)
-	}
-
-	/**
 	 * Action que mostra os detalhes de uma empresa
 	 * @return
 	 */
@@ -142,24 +95,6 @@ class CompanyController {
 		withCompany { company ->
 			[company:company]
 		}
-	}
-
-	/**
-	 * Action que mostra os detalhes de uma empresa do tipo prospecção
-	 * @return
-	 */
-	def showProspect(Long id) {
-		def prospectInstance = Prospect.get(id)
-		if (!prospectInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'company.label', default: 'Company'),
-				id
-			])
-			redirect(action: "listProspect")
-			return
-		}
-
-		[companyInstance: prospectInstance]
 	}
 
 	/**
@@ -203,31 +138,6 @@ class CompanyController {
 
 		[companyInstance: companyInstance]
 		
-	}
-
-	/**
-	 * Action que edita as informações de uma determinada empresa de prospecção
-	 * @param id Identificador único de empresa
-	 * @return
-	 */
-	def editProspect(Long id) {
-		log.info "Editando empresa de prospecao com id " + id
-		println "Editando empresa de prospecao com id " + id
-	
-		def prospectInstance = Prospect.get(id)
-
-		def companyInstance = parseProspectToCompany(prospectInstance)
-
-		if (!companyInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'company.label', default: 'Company'),
-				id
-			])
-			redirect(action: "listProspect")
-			return
-		}
-
-		[companyInstance: companyInstance]
 	}
 
 	/**
@@ -326,22 +236,6 @@ class CompanyController {
 			])
 			redirect(action: "show", id: id)
 		}
-	}
-
-	/**
-	 * Cria uma empresa com os parâmetros de empresa prospecção
-	 * @param prospect empresa prospecção a ser lida e transformada para empresa
-	 * @return
-	 */
-	private Company parseProspectToCompany(Prospect prospect) {
-
-		println "Prospect recebido para parse: " + prospect
-
-		return new Company(cnpj: prospect.cnpj,
-						   name: prospect.name,
-						   contact: new Contact(prospect.contact.name,
-							   					prospect.contact.phone,
-												prospect.contact.email).save())
 	}
 	
 	/**

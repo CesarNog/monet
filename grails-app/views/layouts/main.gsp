@@ -27,15 +27,16 @@
 	
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+	
+
 
 <g:layoutHead />
 
-<g:javascript library="jquery"/>
-<r:require modules="nine-sixty-grid-system, jquery, jquery-ui, application, jquery-validation-ui" />
+<g:javascript library="application"/>
+<r:require modules="nine-sixty-grid-system, jquery, jquery-ui, jquery-validation-ui, jquery-migrate" />
 <r:layoutResources />
+
 </head>
-
-
 
 <body>
 
@@ -45,6 +46,4 @@
 
 	<r:layoutResources />
 </body>
-
-
 </html>

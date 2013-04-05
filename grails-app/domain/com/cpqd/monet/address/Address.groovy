@@ -10,8 +10,8 @@ import com.cpqd.monet.company.ComplementType
  * @author Derick Hirata Ichimura (derick@cpqd.com.br)
  */
 class Address {
-	
-	Locality locality
+
+	static hasOne = [locality:Locality]
 
 	StreetType streetType
 
@@ -26,22 +26,22 @@ class Address {
 	String complementDescription
 
 	String neighborhood
-	
+
 	String zipCode
-	
+
 	String uf
-	
+
 	String city
-	
+
 	String stateSubscription
-	
+
 	String municipalSubscription
-	
-	static belongsTo = Company
+
+	static belongsTo = [company: Company]
 
 	//Método construtor para que os valores dos atributos de Address sejam persistidos
 	Address(locality, streetType, streetTitle, street, streetNumber, complementType, complementDescription,
-		neighborhood, zipCode, uf, city, stateSubscription, municipalSubscription){
+	neighborhood, zipCode, uf, city, stateSubscription, municipalSubscription){
 		this.locality = locality;
 		this.streetType = streetType;
 		this.streetTitle = streetTitle;
@@ -56,9 +56,11 @@ class Address {
 		this.stateSubscription = stateSubscription;
 		this.municipalSubscription = municipalSubscription;
 	}
-	
+
 	// Validação de campos
 	static constraints = {
+
+		company nullable: true
 
 		locality blank: false, nullable: true, maxSize:50
 
@@ -74,12 +76,12 @@ class Address {
 		neighborhood blank: false, nullable: true, maxSize:50
 
 		zipCode matches: "([0-9]{5})[-. ]?([0-9]{3})", blank: false, nullable: false, maxSize:9, required: true
-		
+
 		city blank: false, nullable: true, maxSize:50
-		
+
 		stateSubscription size: 1..20, blank: false, nullable: true, maxSize:50
 		municipalSubscription size: 1..20, blank: false, nullable: true, maxSize:50
-		
+
 		uf blank: false, nullable: true, maxSize:50, required: true
 	}
 }

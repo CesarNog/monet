@@ -16,7 +16,7 @@ class Locality {
 	
 	String municipalSubscription
 		
-	static belongsTo = Address
+	static belongsTo = [address: Address]
 
 	//Método construtor para que os valores dos atributos de Locality sejam persistidos
 	Locality(name, stateSubscription, municipalSubscription){
@@ -27,7 +27,8 @@ class Locality {
 	
 	// Validacao de campos
 	static constraints = {
-
+		address nullable: true
+		
 		name blank: false, nullable: true, maxSize:50
 
 		stateSubscription size: 1..20, blank: false, nullable: true, maxSize:50

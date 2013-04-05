@@ -11,7 +11,7 @@ import com.cpqd.monet.prospect.Prospect
  */
 class Company extends Prospect{
 	
-	Address address
+	static hasOne = [address:Address]
 	
 	CompanyType companyType
 	

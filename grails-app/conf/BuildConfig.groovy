@@ -49,7 +49,7 @@ grails.project.dependency.resolution = {
 		
         runtime ":jquery:1.9.1"
 		
-		runtime ":jquery-ui:1.8.15"
+		runtime ":jquery-ui:1.8.24"
 		
 		runtime ":jquery-validation:1.9"
         
@@ -59,12 +59,9 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.5"
 		
 		runtime ":nine-sixty-grid-system:1.0"
-		
 		runtime ":resources:1.2.RC2"
 		
-		compile ":nine-sixty-grid-system:1.0"	
-		
-		compile ":navigation:1.3.2"
+		compile ":nine-sixty-grid-system:1.0"		
 
         build ":tomcat:$grailsVersion"		
 
